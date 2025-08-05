@@ -102,18 +102,24 @@ pip install -r requirements.txt
 ```
 proyecto_postura/
 │
-├── captura_imagenes.py
-├── procesar_imagenes.py
-├── entrenar_modelo.py
-├── clasificar_tiempo_real.py
 ├── app.py
+├── captura_imagenes.py
+├── clasificar_tiempo_real.py
+├── entrenar_modelo.py
+├── procesar_imagenes.py
 ├── dataset/
-│   └── [carpetas por postura]
+│   ├── [recto]/
+│   ├── [deslizado]/
+│   ├── [encorvado]/
+│   ├── [cruzado]/
+│   └── [inclinado]/
 ├── dataset_posturas.csv
 ├── modelo_posturas.pkl
 ├── encoder.pkl
 ├── requirements.txt
-└── README.md
+├── README.md
+└── templates/
+   └── index.html
 ```
 
 ---
