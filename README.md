@@ -1,4 +1,9 @@
 # Clasificación de Posturas Humanas usando Machine Learning y MediaPipe
+
+## Asignatura: Extracción de conocimientos en Base de Datos 
+
+## Catedrático: Salvador Hernández Mendoza
+
 ## Integrantes del proyecto
 
 | Nombre                                 |
