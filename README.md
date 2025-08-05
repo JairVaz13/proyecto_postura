@@ -1,11 +1,12 @@
 # Clasificación de Posturas Humanas usando Machine Learning y MediaPipe
-
 ## Integrantes del proyecto
 
-- [BRENDA AZUCENA BECERRA CRUZ]
-- [JOSANDY DANAE BARQUERAS ANDRADE]
-- [DULCE DANIELA MALDONADO MOCTEZUMA]
-- [JAIR VAZQUEZ CORDERO]
+| Nombre                                 |
+|-----------------------------------------|
+| Brenda Azucena Becerra Cruz             |
+| Josandy Danae Barqueras Andrade         |
+| Dulce Daniela Maldonado Moctezuma       |
+| Jair Vazquez Cordero                    |
 
 ---
 
