@@ -1,5 +1,12 @@
 # Clasificación de Posturas Humanas usando Machine Learning y MediaPipe
 
+## Integrantes del proyecto
+
+- [BRENDA AZUCENA BECERRA CRUZ]
+- [JOSANDY DANAE BARQUERAS ANDRADE]
+- [DULCE DANIELA MALDONADO MOCTEZUMA]
+- [JAIR VAZQUEZ CORDERO]
+
 ---
 
 ## Descarga del modelo de MediaPipe
