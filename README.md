@@ -1,7 +1,5 @@
 # Clasificación de Posturas Humanas usando Machine Learning y MediaPipe
 
----
-
 ## Descarga del modelo de MediaPipe
 
 Para utilizar los landmarker avanzados de MediaPipe, descarga el modelo necesario ejecutando:
