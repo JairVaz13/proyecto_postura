@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clasificador de Posturas</title>
+  <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      @keyframes glow {
+        0%, 100% { box-shadow: 0 0 10px rgba(0,0,0,0.15); }
+        50% { box-shadow: 0 0 25px rgba(0,0,0,0.25); }
+      }
+      .animate-glow {
+        animation: glow 1.8s ease-in-out infinite;
+      }
+
+      @keyframes slide-in-up {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-slide-in-up {
+        animation: slide-in-up 0.6s ease-out forwards;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center bg-white font-sans relative overflow-hidden">
+
+  <!-- Fondo radial -->
+  <div class="absolute inset-0 -z-10 h-full w-full [background:radial-gradient(125%_125%_at_50%_10%,#fff_40%,#63e_100%)] animate-fade-in"></div>
+
+  <!-- Título -->
+  <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 animate-slide-in-up">
+    🧍 Clasificador de Posturas en Tiempo Real
+  </h1>
+
+  <!-- Video feed -->
+  <div class="w-full max-w-xl shadow-2xl rounded-2xl overflow-hidden border-4 border-gray-700 bg-white animate-slide-in-up delay-150">
+    <img id="videoFeed" width="640" height="480" class="w-full object-cover" />
+  </div>
+
+  <!-- Estado de postura -->
+  <div id="postureDisplay"
+       class="mt-6 px-8 py-5 text-2xl font-semibold rounded-2xl shadow-lg bg-gray-200 text-gray-800 transition-all duration-500 ease-in-out animate-slide-in-up delay-300">
+    Esperando detección...
+  </div>
+
+  <!-- Script -->
+  <script>
+    const socket = io();
+    const video = document.getElementById('videoFeed');
+    const display = document.getElementById('postureDisplay');
+
+    const styles = {
+      'recto': 'bg-green-500 text-white animate-bounce',
+      'deslizado': 'bg-yellow-400 text-black animate-pulse',
+      'encorvado': 'bg-red-600 text-white animate-pulse',
+      'cruzado': 'bg-blue-500 text-white animate-bounce',
+      'inclinado': 'bg-purple-600 text-white animate-bounce'
+    };
+
+    socket.on('video_feed', data => {
+      video.src = data.image;
+      display.className = 'mt-6 px-8 py-5 text-2xl font-semibold rounded-2xl shadow-lg transition-all duration-500 ease-in-out animate-glow';
+
+      if (data.posture && data.posture !== 'No detectado') {
+        display.textContent = `Postura: ${data.posture}`;
+        display.className += ' ' + (styles[data.posture] || 'bg-gray-300 text-gray-800');
+      } else {
+        display.textContent = 'Postura no detectada';
+        display.className += ' bg-gray-300 text-gray-800';
+      }
+    });
+
+    socket.on('disconnect', () => {
+      display.textContent = 'Conexión perdida';
+      display.className = 'mt-6 px-8 py-5 text-2xl font-semibold rounded-2xl shadow-lg bg-gray-500 text-white transition-all duration-500 ease-in-out';
+    });
+  </script>
+
+</body>
+</html>
